@@ -185,7 +185,7 @@ new class extends Component {
                         <flux:button
                             size="sm"
                             variant="ghost"
-                            wire:click="confirmSignOut('{{ $device->uuid }}')"
+                            wire:click="confirmSignOut({{ \Illuminate\Support\Js::from((string) $device->uuid) }})"
                         >
                             {{ __('Sign out') }}
                         </flux:button>
@@ -204,6 +204,9 @@ new class extends Component {
             {{ __('Sign Out Other Devices') }}
         </flux:button>
 
+        <x-action-message class="me-3" on="device-signed-out">
+            {{ __('Done.') }}
+        </x-action-message>
         <x-action-message class="me-3" on="all-devices-signed-out">
             {{ __('Done.') }}
         </x-action-message>

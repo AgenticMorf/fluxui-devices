@@ -195,7 +195,7 @@ new class extends Component {
                         <flux:button
                             size="sm"
                             variant="ghost"
-                            wire:click="confirmEndSession('{{ $session->uuid }}')"
+                            wire:click="confirmEndSession({{ \Illuminate\Support\Js::from((string) $session->uuid) }})"
                         >
                             {{ __('End session') }}
                         </flux:button>
@@ -214,6 +214,9 @@ new class extends Component {
             {{ __('End Other Sessions') }}
         </flux:button>
 
+        <x-action-message class="me-3" on="session-ended">
+            {{ __('Done.') }}
+        </x-action-message>
         <x-action-message class="me-3" on="all-sessions-ended">
             {{ __('Done.') }}
         </x-action-message>
