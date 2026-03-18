@@ -1,0 +1,8 @@
+laravel: ../..
+
+providers:
+  - AgenticMorf\FluxuiDevices\FluxuiDevicesServiceProvider
+
+migrations:
+  - ../../vendor/diego-ninja/laravel-devices/database/migrations
+  - ./tests/database/migrations

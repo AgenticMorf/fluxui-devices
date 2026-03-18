@@ -1,5 +1,5 @@
 {
-    "name": "christhompsontldr/fluxui-devices",
+    "name": "agenticmorf/fluxui-devices",
     "description": "FluxUI front-end for managing devices and sessions using diego-ninja/laravel-devices",
     "keywords": ["laravel", "livewire", "fluxui", "devices", "sessions", "security"],
     "license": "MIT",
@@ -16,15 +16,31 @@
         "livewire/volt": "^1.0",
         "diego-ninja/laravel-devices": "^2.0"
     },
+    "require-dev": {
+        "laravel/framework": "^12.0",
+        "livewire/flux": "^2.0",
+        "orchestra/pest-plugin-testbench": "^4.0",
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "phpunit/phpunit": "^12.0"
+    },
     "autoload": {
         "psr-4": {
-            "ChrisThompsonTLDR\\FluxuiDevices\\": "src/"
+            "AgenticMorf\\FluxuiDevices\\": "src/",
+            "AgenticMorf\\FluxuiDevices\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "bash -c 'cd ../.. && vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml'",
+        "test:coverage": "bash -c 'cd ../.. && XDEBUG_MODE=coverage vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --coverage'",
+        "test:type-coverage": "bash -c 'cd ../.. && vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --type-coverage'",
+        "test:mutation": "bash -c 'cd ../.. && XDEBUG_MODE=coverage vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --mutate --everything --covered-only --class=AgenticMorf\\\\FluxuiDevices'"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ChrisThompsonTLDR\\FluxuiDevices\\FluxuiDevicesServiceProvider"
+                "AgenticMorf\\FluxuiDevices\\FluxuiDevicesServiceProvider"
             ]
         }
     },

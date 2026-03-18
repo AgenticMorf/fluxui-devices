@@ -1,7 +1,13 @@
-<x-settings.layout heading="Devices & Sessions" subheading="Manage your devices and active sessions">
-    <livewire:fluxui-devices::device-manager />
+<x-layouts.app :title="__('Devices & Sessions')">
+    <section class="w-full">
+        @includeIf('partials.settings-heading')
 
-    <flux:separator class="my-10" />
+        <x-settings.layout heading="Devices & Sessions" subheading="Manage your devices and active sessions">
+            <livewire:fluxui-devices.device-manager />
 
-    <livewire:fluxui-devices::session-manager />
-</x-settings.layout>
+            <flux:separator class="my-10" />
+
+            <livewire:fluxui-devices.session-manager />
+        </x-settings.layout>
+    </section>
+</x-layouts.app>

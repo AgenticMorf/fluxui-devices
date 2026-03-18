@@ -60,7 +60,7 @@ php artisan vendor:publish --provider="ChrisThompsonTLDR\\FluxuiDevices\\FluxuiD
 Add the device management component to your settings page:
 
 ```blade
-<livewire:fluxui-devices::device-manager />
+<livewire:fluxui-devices.device-manager />
 ```
 
 This component displays:
@@ -77,7 +77,7 @@ This component displays:
 Add the session management component to your settings page:
 
 ```blade
-<livewire:fluxui-devices::session-manager />
+<livewire:fluxui-devices.session-manager />
 ```
 
 This component displays:

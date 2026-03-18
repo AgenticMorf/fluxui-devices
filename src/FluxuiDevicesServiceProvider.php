@@ -1,9 +1,11 @@
 <?php
 
-namespace ChrisThompsonTLDR\FluxuiDevices;
+namespace AgenticMorf\FluxuiDevices;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Livewire\Volt\ComponentFactory;
 use Livewire\Volt\Volt;
 
 class FluxuiDevicesServiceProvider extends ServiceProvider
@@ -18,7 +20,7 @@ class FluxuiDevicesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'fluxui-devices');
 
         // Laravel 12 compatibility - register routes directly
-        if (!$this->app->routesAreCached()) {
+        if (! $this->app->routesAreCached()) {
             Route::middleware(['web', 'auth', 'verified'])->group(function () {
                 Route::view(config('devices.device_route', 'settings/devices'), 'fluxui-devices::settings.devices')->name('devices.show');
             });
@@ -36,8 +38,21 @@ class FluxuiDevicesServiceProvider extends ServiceProvider
             ], 'fluxui-devices-views');
         }
 
-        Volt::mount([
-            __DIR__.'/../resources/views/livewire' => 'fluxui-devices',
-        ]);
+        Volt::mount([__DIR__.'/../resources/views/livewire']);
+
+        // Volt's view lookup requires namespace::view (exactly 2 segments). Using dot notation
+        // (fluxui-devices.device-manager) maps to fluxui-devices/device-manager.blade.php.
+        Livewire::resolveMissingComponent(function (string $name) {
+            if (! str_starts_with($name, 'fluxui-devices.')) {
+                return null;
+            }
+            $localName = substr($name, strlen('fluxui-devices.'));
+            $path = __DIR__.'/../resources/views/livewire/fluxui-devices/'.str_replace('.', '/', $localName).'.blade.php';
+            if (file_exists($path)) {
+                return $this->app->make(ComponentFactory::class)->make($name, realpath($path));
+            }
+
+            return null;
+        });
     }
 }
