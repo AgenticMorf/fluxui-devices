@@ -1,5 +1,7 @@
 # FluxUI Devices
 
+Documentation is available on [GitHub Pages](https://agenticmorf.github.io/fluxui-devices/).
+
 A FluxUI front-end for managing devices and sessions using [diego-ninja/laravel-devices](https://github.com/diego-ninja/laravel-devices). Designed to cleanly slot into the [Laravel Livewire Starter Kit](https://github.com/laravel/livewire-starter-kit) with [Flux UI](https://fluxui.dev) components.
 
 Inspired by Laravel Jetstream's browser session management, this package provides a beautiful and functional interface for users to manage their authenticated devices and active sessions.

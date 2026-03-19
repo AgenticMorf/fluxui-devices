@@ -1,5 +1,9 @@
 {
     "name": "agenticmorf/fluxui-devices",
+    "homepage": "https://github.com/AgenticMorf/fluxui-devices",
+    "support": {
+        "source": "https://github.com/AgenticMorf/fluxui-devices"
+    },
     "description": "FluxUI front-end for managing devices and sessions using diego-ninja/laravel-devices",
     "keywords": ["laravel", "livewire", "fluxui", "devices", "sessions", "security"],
     "license": "MIT",
@@ -17,6 +21,7 @@
         "diego-ninja/laravel-devices": "^2.0"
     },
     "require-dev": {
+        "christhompsontldr/laravel-docit": "^1.0",
         "laravel/framework": "^12.0",
         "livewire/flux": "^2.0",
         "orchestra/pest-plugin-testbench": "^4.0",
@@ -32,6 +37,7 @@
         }
     },
     "scripts": {
+        "docit": "php vendor/bin/build-docs",
         "test": "bash -c 'cd ../.. && vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml'",
         "test:coverage": "bash -c 'cd ../.. && XDEBUG_MODE=coverage vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --coverage'",
         "test:type-coverage": "bash -c 'cd ../.. && vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --type-coverage'",
@@ -42,6 +48,11 @@
             "providers": [
                 "AgenticMorf\\FluxuiDevices\\FluxuiDevicesServiceProvider"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     },
     "minimum-stability": "stable",
