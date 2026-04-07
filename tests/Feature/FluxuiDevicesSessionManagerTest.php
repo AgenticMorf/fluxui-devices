@@ -4,9 +4,12 @@ use AgenticMorf\FluxuiDevices\Tests\Models\User;
 use AgenticMorf\FluxuiDevices\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
+use Ninja\DeviceTracker\DTO\Metadata;
 use Ninja\DeviceTracker\Enums\SessionStatus;
+use Ninja\DeviceTracker\Factories\SessionIdFactory;
 use Ninja\DeviceTracker\Models\Device;
 use Ninja\DeviceTracker\Models\Session;
+use Ninja\DeviceTracker\Modules\Location\DTO\Location;
 
 uses(TestCase::class, RefreshDatabase::class);
 
@@ -28,13 +31,13 @@ test('session manager shows sessions when user has them', function () {
         'device_type' => 'desktop',
     ]);
     Session::create([
-        'uuid' => \Ninja\DeviceTracker\Factories\SessionIdFactory::generate(),
+        'uuid' => SessionIdFactory::generate(),
         'user_id' => $user->id,
         'device_uuid' => $device->uuid,
         'ip' => '192.168.1.1',
-        'location' => \Ninja\DeviceTracker\Modules\Location\DTO\Location::fromArray([]),
+        'location' => Location::fromArray([]),
         'status' => SessionStatus::Active,
-        'metadata' => new \Ninja\DeviceTracker\DTO\Metadata([]),
+        'metadata' => new Metadata([]),
         'started_at' => now(),
         'last_activity_at' => now(),
     ]);
@@ -51,13 +54,13 @@ test('session manager confirmEndSession opens modal', function () {
     $user = User::factory()->create();
     $device = Device::factory()->create();
     $session = Session::create([
-        'uuid' => \Ninja\DeviceTracker\Factories\SessionIdFactory::generate(),
+        'uuid' => SessionIdFactory::generate(),
         'user_id' => $user->id,
         'device_uuid' => $device->uuid,
         'ip' => '127.0.0.1',
-        'location' => \Ninja\DeviceTracker\Modules\Location\DTO\Location::fromArray([]),
+        'location' => Location::fromArray([]),
         'status' => SessionStatus::Active,
-        'metadata' => new \Ninja\DeviceTracker\DTO\Metadata([]),
+        'metadata' => new Metadata([]),
         'started_at' => now(),
         'last_activity_at' => now(),
     ]);
@@ -86,13 +89,13 @@ test('session manager endSession requires password', function () {
     $user = User::factory()->create();
     $device = Device::factory()->create();
     $session = Session::create([
-        'uuid' => \Ninja\DeviceTracker\Factories\SessionIdFactory::generate(),
+        'uuid' => SessionIdFactory::generate(),
         'user_id' => $user->id,
         'device_uuid' => $device->uuid,
         'ip' => '127.0.0.1',
-        'location' => \Ninja\DeviceTracker\Modules\Location\DTO\Location::fromArray([]),
+        'location' => Location::fromArray([]),
         'status' => SessionStatus::Active,
-        'metadata' => new \Ninja\DeviceTracker\DTO\Metadata([]),
+        'metadata' => new Metadata([]),
         'started_at' => now(),
         'last_activity_at' => now(),
     ]);
@@ -109,13 +112,13 @@ test('session manager endSession ends session with correct password', function (
     $user = User::factory()->create(['password' => 'password']);
     $device = Device::factory()->create();
     $session = Session::create([
-        'uuid' => \Ninja\DeviceTracker\Factories\SessionIdFactory::generate(),
+        'uuid' => SessionIdFactory::generate(),
         'user_id' => $user->id,
         'device_uuid' => $device->uuid,
         'ip' => '127.0.0.1',
-        'location' => \Ninja\DeviceTracker\Modules\Location\DTO\Location::fromArray([]),
+        'location' => Location::fromArray([]),
         'status' => SessionStatus::Active,
-        'metadata' => new \Ninja\DeviceTracker\DTO\Metadata([]),
+        'metadata' => new Metadata([]),
         'started_at' => now(),
         'last_activity_at' => now(),
     ]);

@@ -38,10 +38,10 @@
     },
     "scripts": {
         "docit": "php vendor/bin/build-docs",
-        "test": "bash -c 'cd ../.. && vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml'",
-        "test:coverage": "bash -c 'cd ../.. && XDEBUG_MODE=coverage vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --coverage'",
-        "test:type-coverage": "bash -c 'cd ../.. && vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --type-coverage'",
-        "test:mutation": "bash -c 'cd ../.. && XDEBUG_MODE=coverage vendor/bin/pest plugins/fluxui-devices/tests --configuration=plugins/fluxui-devices/phpunit.xml --mutate --everything --covered-only --class=AgenticMorf\\\\FluxuiDevices'"
+        "test": "vendor/bin/pest",
+        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage",
+        "test:type-coverage": "vendor/bin/pest --type-coverage",
+        "test:mutation": "XDEBUG_MODE=coverage vendor/bin/pest --mutate --everything --covered-only --class=AgenticMorf\\\\FluxuiDevices"
     },
     "extra": {
         "laravel": {
